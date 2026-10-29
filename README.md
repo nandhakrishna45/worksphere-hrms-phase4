@@ -1,45 +1,48 @@
-# WorkSphere HRMS — Phase 3
+# WorkSphere HRMS — Phase 4
 
-Phase 3 starter implementation for automation, insights, and smart HR features.
+Phase 4 implementation for Employee Experience & System Integrations.
 
-## Included modules
-- Module 14: Shift management and attendance check-in/out with late/early detection
-- Module 15: Leave calendar and team availability
-- Module 16: Employee document metadata and secure local upload/download
-- Module 17: Performance reviews
-- Module 18: Analytics and CSV reports
-- Module 19: In-app notifications and alert generation
-- Module 20: Employee search and filters
+## Included Modules
 
-## Stack
+- Module 21: Employee Onboarding System
+- Module 22: Resignation & Exit Management
+- Module 23: Internal Announcements System
+- Module 24: Internal Task Assignment & Tracking
+- Module 25: Third-Party Integrations
+- Module 26: Employee Feedback System
+- Module 27: Profile & Settings Management
+
+## Technology Stack
+
 - FastAPI
 - SQLAlchemy 2
-- SQLite by default (PostgreSQL supported through `DATABASE_URL`)
+- SQLite by default
 - JWT authentication
+- Role-based authorization
 - Pydantic validation
-- Local document storage in `uploads/`
+- CSV/PDF report exports
+- Optional SMTP email integration
 
-> Integration note: This is a standalone Phase 3 baseline. Merge the models, routers, and auth dependencies into the existing Phase 1/2 codebase before deployment. Existing Users/Employees/Attendance/Leaves/Payroll schemas may differ, so validate migrations and relationships before using production data.
+## Setup
 
-## Run locally
-```bash
-python -m venv .venv
-# Windows: .venv\\Scripts\\activate
-# macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
-copy .env.example .env  # Windows
-# cp .env.example .env  # macOS/Linux
-uvicorn app.main:app --reload
-```
-Open `http://127.0.0.1:8000/docs`.
+1. Create and activate a Python virtual environment.
+2. Install dependencies using `pip install -r requirements.txt`.
+3. Copy `.env.example` to `.env`.
+4. Configure your environment variables and secret key.
+5. Run the application:
 
-## Bootstrap an admin
-Set `BOOTSTRAP_ADMIN_EMAIL` and `BOOTSTRAP_ADMIN_PASSWORD` in `.env`, then start the app. On first startup, an admin is created if no user exists with that email.
+   `uvicorn app.main:app --reload`
 
-## Important production work
-- Replace local uploads with private object storage and malware scanning.
-- Use Alembic migrations; do not rely on `create_all` in production.
-- Set a strong `JWT_SECRET_KEY`, enforce HTTPS, rotate secrets, and configure CORS.
-- Configure a real scheduler/worker for shift-based automatic attendance and notifications.
-- Integrate email/SMS/web-push providers as required.
-- Add tests, audit logging, backups, retention policies, and rate limiting.
+6. Open `http://127.0.0.1:8000/docs` to explore and test the API.
+
+## Security
+
+- JWT authentication
+- Role-based access control
+- Employee ownership validation
+- Input validation
+- Environment-based configuration
+
+## Note
+
+This Phase 4 implementation should be integrated with the existing WorkSphere Phases 1–3 database models and authentication system before deployment. Google Calendar synchronization requires additional OAuth configuration.
